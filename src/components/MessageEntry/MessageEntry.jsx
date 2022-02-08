@@ -8,6 +8,18 @@ export default function MessageEntry() {
   const { user, setUser } = { useUser };
   const { message, setMessage } = { useMessage };
 
+  function updateEntry() {
+    if (!entry) return;
+    setName(name);
+    setMessage(message);
+    setEntry('');
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateEntry();
+  };
+
   const nameInput = (
     <div>
       <label>Name</label>
@@ -26,7 +38,7 @@ export default function MessageEntry() {
       </div>
       <div>
         <form onSubmit={handleSubmit}>
-          {user ? null : MessageEntry}
+          {user ? null : nameInput}
           <div>
             <input>Enter Message</input>
             <textarea
