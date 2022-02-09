@@ -1,3 +1,11 @@
+import Home from './views/Home/Home';
+import { UserProvider } from './context/UserContext';
+import './App.css';
+
 export default function App() {
-  return <h1>Hello World</h1>;
+  return (
+    <UserProvider>
+      <Home />
+    </UserProvider>
+  );
 }

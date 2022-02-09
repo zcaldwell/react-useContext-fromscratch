@@ -1,0 +1,12 @@
+.listItems {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.allList {
+  display: flex;
+  flex-direction: row;
+}
