@@ -3,14 +3,15 @@ import { useUser } from '../../context/UserContext';
 import { useState } from 'react';
 import styles from './MessageEntry.css';
 
-const { inputContainer, formContainer } = styles;
+const { inputContainer, formContainer, nameInput } = styles;
 
 export default function MessageEntry() {
   const [entry, setEntry] = useState('');
   const [name, setName] = useState('');
+  const [image, setImage] = useState('');
   const { user, setUser } = useUser();
   const { messages, setMessages } = useMessage();
-
+  const { avatar, setAvatar } = useAvatar();
   function updateEntry() {
     if (!entry) return;
     setUser(name);
@@ -24,7 +25,7 @@ export default function MessageEntry() {
   };
 
   const nameInput = (
-    <div>
+    <div className="nameInput">
       <label>
         Name
         <input
@@ -32,6 +33,15 @@ export default function MessageEntry() {
           value={name}
           placeholder="Enter Name"
           onChange={(e) => setName(e.target.value)}
+        />
+      </label>
+      <label>
+        Avatar
+        <input
+          type="text"
+          value={avatar}
+          placeholder="Enter Avatar Url"
+          onChange={(e) => setAvatar(e.target.value)}
         />
       </label>
     </div>
@@ -49,10 +59,7 @@ export default function MessageEntry() {
           <div>
             <label>
               Enter Message
-              <textarea
-                value={entry}
-                onChange={(e) => setEntry(e.target.value)}
-              />
+              <input value={entry} onChange={(e) => setEntry(e.target.value)} />
             </label>
           </div>
           <div>
