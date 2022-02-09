@@ -25,17 +25,15 @@ export default function MessageEntry() {
 
   const nameInput = (
     <div>
-      <div>
-        <label>Name</label>
-      </div>
-      <div>
+      <label>
+        Name
         <input
           type="text"
           value={name}
           placeholder="Enter Name"
           onChange={(e) => setName(e.target.value)}
         />
-      </div>
+      </label>
     </div>
   );
 
@@ -49,13 +47,13 @@ export default function MessageEntry() {
         <form onSubmit={handleSubmit} className={formContainer}>
           {user ? null : nameInput}
           <div>
-            <label>Enter Message</label>
-            <div>
+            <label>
+              Enter Message
               <textarea
                 value={entry}
                 onChange={(e) => setEntry(e.target.value)}
               />
-            </div>
+            </label>
           </div>
           <div>
             <button type="submit">Submit</button>
