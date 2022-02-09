@@ -1,5 +1,10 @@
 import Home from './views/Home/Home';
+import { UserProvider } from './context/UserContext';
 
 export default function App() {
-  return <Home />;
+  return (
+    <UserProvider>
+      <Home />
+    </UserProvider>
+  );
 }
