@@ -5,3 +5,8 @@
   align-items: center;
   margin: 10px;
 }
+
+.allList {
+  display: flex;
+  flex-direction: row;
+}
