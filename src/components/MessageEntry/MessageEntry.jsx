@@ -3,7 +3,7 @@ import { useUser } from '../../context/UserContext';
 import { useState } from 'react';
 import styles from './MessageEntry.css';
 
-const { inputContainer, formContainer, nameInput } = styles;
+const { inputContainer, formContainer } = styles;
 
 export default function MessageEntry() {
   const [entry, setEntry] = useState('');
@@ -11,11 +11,11 @@ export default function MessageEntry() {
   const [image, setImage] = useState('');
   const { user, setUser } = useUser();
   const { messages, setMessages } = useMessage();
-  const { avatar, setAvatar } = useAvatar();
+
   function updateEntry() {
     if (!entry) return;
     setUser(name);
-    setMessages([...messages, { name, entry }]);
+    setMessages([...messages, { name, entry, image }]);
     setEntry('');
   }
 
@@ -25,7 +25,7 @@ export default function MessageEntry() {
   };
 
   const nameInput = (
-    <div className="nameInput">
+    <div className={nameInput}>
       <label>
         Name
         <input
@@ -39,9 +39,9 @@ export default function MessageEntry() {
         Avatar
         <input
           type="text"
-          value={avatar}
+          value={image}
           placeholder="Enter Avatar Url"
-          onChange={(e) => setAvatar(e.target.value)}
+          onChange={(e) => setImage(e.target.value)}
         />
       </label>
     </div>
@@ -70,6 +70,7 @@ export default function MessageEntry() {
                 onClick={() => {
                   setUser('');
                   setEntry('');
+                  setImage('');
                 }}
               >
                 Sign-Out
