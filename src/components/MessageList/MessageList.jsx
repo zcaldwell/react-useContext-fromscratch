@@ -4,7 +4,7 @@ import Message from '../Message/Message';
 import styles from './MessageList.css';
 import Hover from '../../hooks/Hover';
 
-const { listItems, allList } = styles;
+const { listItems, allList, hover } = styles;
 
 export default function MessageList() {
   const { messages } = useMessage();
@@ -25,7 +25,9 @@ export default function MessageList() {
           })}
         </ul>
       </div>
-      <Hover />
+      <div className={hover}>
+        <Hover />
+      </div>
     </>
   );
 }
