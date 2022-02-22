@@ -1,11 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
+import { useUser } from '../../context/UserContext';
+import useForm from '../../hooks/useForm';
 
 export default function Auth() {
   const history = useHistory();
   const location = useLocation();
-  const auth = useAuth();
+  const user = useUser();
   const [error, setError] = useState(null);
 
   const { formState, handleFormChange } = useForm({
@@ -17,7 +19,7 @@ export default function Auth() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const loginSuccessful = auth.login(formState.email, formState.password);
+    const loginSuccessful = user.login(formState.username, formState.password);
 
     if (loginSuccessful) {
       history.replace(from.pathname);
