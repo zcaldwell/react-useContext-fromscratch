@@ -4,9 +4,15 @@
   flex-direction: column;
   align-items: center;
   margin: 10px;
+  width: 8vw;
 }
 
 .allList {
   display: flex;
   flex-direction: row;
+}
+
+.hover {
+  display: flex;
+  justify-content: center;
 }

@@ -6,5 +6,10 @@
 
 .formContainer {
   display: flex;
+  flex-direction: row;
+}
+
+.inputContainer {
+  display: flex;
   flex-direction: column;
 }
