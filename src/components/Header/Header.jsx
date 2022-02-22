@@ -12,7 +12,7 @@ export default function Header() {
       {user ? (
         <h2>Hello {user}, please leave a message! </h2>
       ) : (
-        <h2>Plese sign in.</h2>
+        <h2>Please sign in.</h2>
       )}
     </div>
   );
