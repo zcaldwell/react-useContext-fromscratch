@@ -11,11 +11,7 @@ export default function Header() {
   return (
     <div className={header}>
       <h1>Welcome to the Guest Book</h1>
-      {username ? (
-        <h2>Hello {username}, please leave a message! </h2>
-      ) : (
-        <h2>Please sign in.</h2>
-      )}
+      <h2>Hello {username}, please leave a message! </h2>
     </div>
   );
 }

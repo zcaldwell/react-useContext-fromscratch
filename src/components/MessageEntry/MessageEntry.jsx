@@ -2,20 +2,23 @@ import { useMessage } from '../../context/MessageContext';
 import { useUser } from '../../context/UserContext';
 import { useState } from 'react';
 import styles from './MessageEntry.css';
+import { useHistory } from 'react-router-dom';
 
 const { inputContainer, formContainer } = styles;
 
 export default function MessageEntry() {
   const [entry, setEntry] = useState('');
-  const [name, setName] = useState('');
   const [image, setImage] = useState('');
-  const { user, setUser } = useUser();
+  const {
+    user: { username },
+    logout,
+  } = useUser();
   const { messages, setMessages } = useMessage();
+  const history = useHistory();
 
   function updateEntry() {
     if (!entry) return;
-    setUser(name);
-    setMessages([...messages, { name, entry, image }]);
+    setMessages([...messages, { username, entry, image }]);
     setEntry('');
   }
 
@@ -24,17 +27,12 @@ export default function MessageEntry() {
     updateEntry();
   };
 
-  const nameInput = (
-    <div className={nameInput}>
-      <label>
-        Name
-        <input
-          type="text"
-          value={name}
-          placeholder="Enter Name"
-          onChange={(e) => setName(e.target.value)}
-        />
-      </label>
+  const handleLogout = () => {
+    logout(() => history.push('/'));
+  };
+
+  const avatarInput = (
+    <div className={avatarInput}>
       <label>
         Avatar
         <input
@@ -47,15 +45,11 @@ export default function MessageEntry() {
     </div>
   );
 
-  const displayUser = user ? `${user} is signed in.` : 'Please Sign In';
   return (
     <div className={inputContainer}>
       <div>
-        <h1>{displayUser}</h1>
-      </div>
-      <div>
         <form onSubmit={handleSubmit} className={formContainer}>
-          {user ? null : nameInput}
+          {messages.image ? null : avatarInput}
           <div>
             <label>
               Enter Message
@@ -64,19 +58,10 @@ export default function MessageEntry() {
           </div>
           <div>
             <button type="submit">Submit</button>
-            {user && (
-              <button
-                type="button"
-                onClick={() => {
-                  setUser('');
-                  setEntry('');
-                  setImage('');
-                }}
-              >
-                Sign-Out
-              </button>
-            )}
           </div>
+          <button type="button" onClick={handleLogout}>
+            Sign-Out
+          </button>
         </form>
       </div>
     </div>
