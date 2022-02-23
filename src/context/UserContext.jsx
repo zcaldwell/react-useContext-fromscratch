@@ -7,8 +7,8 @@ const UserProvider = ({ children }) => {
 
   const login = (username, password) => {
     const loginSuccessful =
-      username === process.env.AUTH_USERNAME &&
-      password === process.env.AUTH_PASSWORD;
+      username === process.env.REACT_APP_AUTH_USERNAME &&
+      password === process.env.REACT_APP_AUTH_PASSWORD;
     if (loginSuccessful) setUser({ username });
     return loginSuccessful;
   };

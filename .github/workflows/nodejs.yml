@@ -16,3 +16,6 @@ jobs:
     - run: npm test
       env:
         CI: true
+        
+          REACT_APP_AUTH_EMAIL: ${{secrets.REACT_APP_AUTH_EMAIL}}
+          REACT_APP_AUTH_PASSWORD: ${{secrets.REACT_APP_AUTH_PASSWORD}}
