@@ -1,5 +1,57 @@
 import React from 'react';
+import { useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
+import { useUser } from '../../context/UserContext';
+import { useForm } from '../../hooks/useForm';
 
 export default function Auth() {
-  return <div>Auth</div>;
+  const history = useHistory();
+  const location = useLocation();
+  const user = useUser();
+  const [error, setError] = useState(null);
+
+  const { formState, handleFormChange } = useForm({
+    username: '',
+    password: '',
+  });
+
+  const { from } = location.state || { from: { pathname: '/home' } };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const loginSuccessful = user.login(formState.username, formState.password);
+
+    if (loginSuccessful) {
+      history.replace(from.pathname);
+    } else {
+      setError('Login failed');
+    }
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleLogin}>
+        <label>
+          Username
+          <input
+            type="text"
+            name="username"
+            id="username"
+            onChange={handleFormChange}
+          />
+        </label>
+        <label>
+          Password
+          <input
+            type="password"
+            name="password"
+            id="password"
+            onChange={handleFormChange}
+          />
+        </label>
+        <button type="submit">Login</button>
+      </form>
+      {error && <h2>{error}</h2>}
+    </div>
+  );
 }
